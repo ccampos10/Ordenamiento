@@ -1,23 +1,31 @@
 import java.util.Scanner;
 
 public class Pantalla {
+    public static boolean flag = false;
+
     public static Scanner scan = new Scanner(System.in);
     public static int menu(){
         Scanner scan = new Scanner(System.in);
         int op=-1;
+        flag = false;
 
-        System.out.println("\nOpciones");
-        System.out.println("1.- Buble sort");
-        System.out.println("2.- Selection sort");
-        System.out.println("3.- Insertion sort");
-        System.out.println("4.- Shell sort");
-        System.out.println("5.- Merge sort");
-        System.out.println("6.- Salir");
-        System.out.print("Elija una opcion: ");
         do {
+            System.out.println("\nOpciones");
+            System.out.println("1.- Buble sort");
+            System.out.println("2.- Selection sort");
+            System.out.println("3.- Insertion sort");
+            System.out.println("4.- Shell sort");
+            System.out.println("5.- Merge sort");
+            System.out.println("6.- Quick sort");
+            System.out.println("7.- Salir");
+            System.out.println("Agrega v despues del numero de opcion para mostrar el procedimiento del algoritmo. Eje: 1v");
+            System.out.print("Elija una opcion: ");
             try{
-                op = scan.nextInt();
-                if (op<1 || 6<op) { throw new Exception(); }
+                String str = scan.nextLine();
+                if (str.length() == 2 && str.charAt(1) == 'v'){ flag = true; }
+                else if (str.length() == 2 && str.charAt(1) != 'v') { throw new Exception(); }
+                op = Integer.parseInt(""+str.charAt(0));
+                if (op<1 || 7<op) { throw new Exception(); }
             }
             catch (Exception e) {
                 System.out.println("Valor ingresado invalido, intente nuevamente");
@@ -36,17 +44,30 @@ public class Pantalla {
         System.out.println("]");
         
     }
-    public static void cambioVar(int a, int b, int i, int j){
-        System.out.println("Se intercambiaron los valores " + a + " y " + b + " en las posiciones " + i + " y " + j + " respectivamente");
+
+    public static void incertarVar(int a, int[] list){
+        if(flag){
+            System.out.println("Se inserto el valor " + a);
+            System.out.print("    ");
+            mostrarArr(list);
+            System.out.println("");
+        }
     }
-    public static void incertarVar(int a){
-        System.out.println("Se incerto el valor " + a);
-    }
-    public static void intercambiarVar(int a, int b){
-        System.out.println("Se intercambio el valor " + a + " y " + b);
+    public static void intercambiarVar(int a, int b, int[] list){
+        if (flag){
+            System.out.println("Se intercambio el valor " + a + " y " + b);
+            System.out.print("    ");
+            mostrarArr(list);
+            System.out.println("");
+        }
     }
 
-    public static void insertionVar(int tem){
-        System.out.println("Inserto " + tem);
+    public static void mostrarListaOr(int[] arr){
+        System.out.print("Lista original: ");
+        Pantalla.mostrarArr(arr);
+    }
+
+    public static void comp(String com){
+        System.out.println("Algoritmo, en el peor de los casos, con complejidad: "+com);
     }
 }
