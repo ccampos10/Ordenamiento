@@ -49,25 +49,43 @@ public class algoritmos {
         Pantalla.mostrarArr(a);
     }
 
+    // public static void ShellSort(int[] a) {     
+    //     int n = a.length;
+    //     int incremento = n;
+    //     do {
+    //         incremento = incremento / 2;
+    //         for (int k = 0; k < incremento; k++) {
+    //             for (int i = incremento + k; i < n; i += incremento) {
+    //                 int j = i;
+    //                 while (j - incremento >= 0 && a[j] < a[j - incremento]) {
+    //                     int tmp = a[j];
+    //                     a[j] = a[j - incremento];
+    //                     a[j - incremento] = tmp;
+    //                     Pantalla.intercambiarVar(tmp, a[j]);
+    //                     j -= incremento;
+    //                     }
+    //                 }
+    //             }
+    //         } 
+    //     while (incremento > 1);
+    //     Pantalla.mostrarArr(a);
+    // }
+
     public static void ShellSort(int[] a) {     
-        int n = a.length;
-        int incremento = n;
-        do {
-            incremento = incremento / 2;
-            for (int k = 0; k < incremento; k++) {
-                for (int i = incremento + k; i < n; i += incremento) {
-                    int j = i;
-                    while (j - incremento >= 0 && a[j] < a[j - incremento]) {
-                        int tmp = a[j];
-                        a[j] = a[j - incremento];
-                        a[j - incremento] = tmp;
-                        Pantalla.intercambiarVar(tmp, a[j]);
-                        j -= incremento;
-                        }
+        int inter = a.length;
+        do{
+            inter = inter/2;
+            for (int i = 0; i<a.length-inter; i++){
+                for (int j = i;j>=0;j-=inter){
+                    if (a[j]>a[j+inter]){
+                        int aux = a[i];
+                        a[i]=a[i+inter];
+                        a[i+inter]=aux;
                     }
                 }
-            } 
-        while (incremento > 1);
+            }
+        }
+        while(inter/2>=1);
         Pantalla.mostrarArr(a);
     }
 
